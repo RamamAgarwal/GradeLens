@@ -44,32 +44,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-> **If extraction/grading calls start failing:** Google periodically retires free-tier
-> model names. Check [https://ai.google.dev/gemini-api/docs/models](https://ai.google.dev/gemini-api/docs/models) for the current
-> free Flash model and set `GEMINI_MODEL` in `.env.local` accordingly (defaults to
-> `gemini-2.5-flash`).
-
-## Deploying to a live URL
-
-The easiest path is **Vercel** (free tier), since this is a standard Next.js app:
-
-1. Push this folder to a GitHub repo.
-2. Go to [https://vercel.com/new](https://vercel.com/new) and import the repo.
-3. In the project's **Environment Variables**, add `GEMINI_API_KEY` (and optionally `GEMINI_MODEL`).
-4. Deploy. Vercel builds and gives you a live `*.vercel.app` URL automatically.
-
-Any other Node host (Render, Railway, Fly.io, a VPS with `npm run build && npm start`) works the same way — the app has no other infrastructure dependencies.
-
-### A note on upload size
-
-Serverless hosts (Vercel's Hobby tier included) cap request body size, typically
-around 4.5 MB. Pages are auto-downscaled and re-encoded client-side (longest edge
-1800px, JPEG ~85%) before upload to stay well within that for typical question
-papers and answer sheets (a handful of pages each). If you're grading unusually
-long answer sheets (15+ pages) and see upload errors, either lower `MAX_DIMENSION`
-in `lib/pdf.ts` a bit further, or deploy somewhere without that body-size cap
-(e.g. a small VPS or Railway/Render).
-
 ## Project structure
 
 ```
