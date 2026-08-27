@@ -1,4 +1,4 @@
-# Marking Desk — Answer Sheet Grader
+# Grade Lems - Answer Sheet Grader
 
 Upload a question paper and one student's handwritten answer sheet (PDF or images).
 The app extracts every question in printed order, segments and transcribes the
