@@ -27,7 +27,7 @@ export default function Sidebar({ collapsed, onToggle }: { collapsed?: boolean; 
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#18181B] text-white shadow-xs">
           <LogoMark className="h-4 w-4" />
         </div>
-        
+
         <div className="my-1 h-px w-8 bg-gray-100" />
 
         <div className="flex flex-col gap-1.5 w-full px-2">
@@ -35,9 +35,8 @@ export default function Sidebar({ collapsed, onToggle }: { collapsed?: boolean; 
             <button
               key={item.label}
               title={item.label}
-              className={`flex h-10 w-full items-center justify-center rounded-xl transition-all ${
-                item.active ? 'bg-gray-100 text-[#18181B] font-semibold' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-700'
-              }`}
+              className={`flex h-10 w-full items-center justify-center rounded-xl transition-all ${item.active ? 'bg-gray-100 text-[#18181B] font-semibold' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-700'
+                }`}
             >
               <item.icon className="h-4.5 w-4.5" />
             </button>
@@ -90,11 +89,10 @@ export default function Sidebar({ collapsed, onToggle }: { collapsed?: boolean; 
         {NAV_ITEMS.map((item) => (
           <button
             key={item.label}
-            className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-semibold transition-all ${
-              item.active
+            className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-semibold transition-all ${item.active
                 ? 'bg-[#F3F4F6] text-[#18181B]'
                 : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
-            }`}
+              }`}
           >
             <item.icon className={`h-4.5 w-4.5 ${item.active ? 'text-[#18181B]' : 'text-gray-400'}`} />
             {item.label}

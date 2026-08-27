@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Marking Desk — Answer Sheet Grader',
+  title: 'Grade Lens - Answer Sheet Grader',
   description: 'Upload a question paper and a handwritten answer sheet to extract, map, and grade answers automatically.'
 };
 

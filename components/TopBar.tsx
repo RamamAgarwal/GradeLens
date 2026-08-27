@@ -50,7 +50,7 @@ export default function TopBar({ breadcrumb, onBack }: { breadcrumb: string; onB
               <path d="M7 32c0-6 5-10 11-10s11 4 11 10" fill="#0F172A" />
             </svg>
           </div>
-          <span className="text-xs font-bold text-gray-900">Madhur Rastogi</span>
+          <span className="text-xs font-bold text-gray-900">Ramam</span>
           <ChevronDown className="h-3.5 w-3.5 text-gray-400" />
         </button>
       </div>
