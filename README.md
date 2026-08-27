@@ -17,11 +17,11 @@ Upload → render pages to images (client-side)
 ```
 
 - **Sub-parts** ("11 (a)", "11 (b)") are extracted as separate question entries, in printed order.
-- **Out-of-order answers** are matched by the label the student wrote (normalized — "Q11b", "11 (b)", "11-b" all match), not by position on the sheet.
+- **Out-of-order answers** are matched by the label the student wrote (normalized - "Q11b", "11 (b)", "11-b" all match), not by position on the sheet.
 - **Unlabeled/ambiguous answers** fall back to a semantic match against the remaining unmatched questions; if nothing fits, they're shown separately as "answers with no matching question" instead of being forced onto the wrong one.
-- **Unanswered questions** are simply questions no segment ever matched — shown with a "not answered" badge and graded as 0.
+- **Unanswered questions** are simply questions no segment ever matched - shown with a "not answered" badge and graded as 0.
 - **Multi-page answers** are represented as one segment with multiple highlighted regions (one per page), so clicking the question highlights all of them.
-- Everything is kept in memory for the request/session only — no database, no auth.
+- Everything is kept in memory for the request/session only - no database, no auth.
 
 ## Setup
 
@@ -30,7 +30,7 @@ npm install
 cp .env.example .env.local
 ```
 
-Get a **free** Gemini API key at <https://aistudio.google.com/app/apikey> and put it in `.env.local`:
+Get a **free** Gemini API key at [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) and put it in `.env.local`:
 
 ```
 GEMINI_API_KEY=your-key-here
@@ -42,10 +42,10 @@ Then run it:
 npm run dev
 ```
 
-Open <http://localhost:3000>.
+Open [http://localhost:3000](http://localhost:3000).
 
 > **If extraction/grading calls start failing:** Google periodically retires free-tier
-> model names. Check <https://ai.google.dev/gemini-api/docs/models> for the current
+> model names. Check [https://ai.google.dev/gemini-api/docs/models](https://ai.google.dev/gemini-api/docs/models) for the current
 > free Flash model and set `GEMINI_MODEL` in `.env.local` accordingly (defaults to
 > `gemini-2.5-flash`).
 
@@ -54,7 +54,7 @@ Open <http://localhost:3000>.
 The easiest path is **Vercel** (free tier), since this is a standard Next.js app:
 
 1. Push this folder to a GitHub repo.
-2. Go to <https://vercel.com/new> and import the repo.
+2. Go to [https://vercel.com/new](https://vercel.com/new) and import the repo.
 3. In the project's **Environment Variables**, add `GEMINI_API_KEY` (and optionally `GEMINI_MODEL`).
 4. Deploy. Vercel builds and gives you a live `*.vercel.app` URL automatically.
 
@@ -90,7 +90,7 @@ lib/
 ## Known limitations / things to improve with more time
 
 - Grading is a single automatic pass meant as a first draft for the teacher to
-  review, not a final grade — it's shown as such in the UI.
+  review, not a final grade - it's shown as such in the UI.
 - Very poor handwriting or low-quality photos will degrade both transcription
   and bounding-box accuracy; a higher-resolution scan helps a lot.
 - The semantic-matching and grading calls are single Gemini requests batching all
