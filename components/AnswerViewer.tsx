@@ -8,7 +8,7 @@ interface AnswerViewerProps {
   segments: AnswerSegment[];
   mappings: Mapping[];
   questions: Question[];
-  selectedId: string | null; // question id, or "seg:<segmentId>", or null
+  selectedId: string | null;
 }
 
 interface ActiveRegion {
@@ -59,21 +59,23 @@ export default function AnswerViewer({ pages, segments, mappings, questions, sel
 
   return (
     <div className="flex h-full flex-col overflow-hidden bg-white">
-      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
-        <h2 className="text-sm font-semibold text-ink">Answer Sheet</h2>
-        <div className="flex items-center gap-3">
+      {/* Toolbar */}
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-2.5">
+        <h2 className="text-[13px] font-bold text-[#1A1A1A]">Answer Sheet</h2>
+        <div className="flex items-center gap-2.5">
+          {/* Zoom dropdown */}
           <div className="relative">
             <button
               onClick={() => setZoomOpen((v) => !v)}
-              className="focus-ring flex items-center gap-1 rounded-md border border-gray-200 px-2 py-1 text-xs text-ink-muted hover:bg-gray-50"
+              className="flex items-center gap-1 rounded-md border border-gray-200 px-2 py-1 text-[11px] font-medium text-gray-500 hover:bg-gray-50 transition-colors"
             >
               {zoom}%
-              <svg viewBox="0 0 20 20" fill="none" className="h-3 w-3">
-                <path d="M5.5 8 10 12.5 14.5 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <svg viewBox="0 0 16 16" fill="none" className="h-2.5 w-2.5">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             {zoomOpen && (
-              <div className="absolute right-0 top-full z-10 mt-1 w-20 rounded-md border border-gray-200 bg-white py-1 shadow-md">
+              <div className="absolute right-0 top-full z-10 mt-1 w-16 rounded-lg border border-gray-200 bg-white py-0.5 shadow-lg">
                 {ZOOM_LEVELS.map((z) => (
                   <button
                     key={z}
@@ -81,7 +83,9 @@ export default function AnswerViewer({ pages, segments, mappings, questions, sel
                       setZoom(z);
                       setZoomOpen(false);
                     }}
-                    className="block w-full px-3 py-1 text-left text-xs text-ink hover:bg-gray-50"
+                    className={`block w-full px-2.5 py-1.5 text-left text-[11px] transition-colors ${
+                      z === zoom ? 'bg-gray-100 font-semibold text-[#1A1A1A]' : 'text-gray-600 hover:bg-gray-50'
+                    }`}
                   >
                     {z}%
                   </button>
@@ -90,27 +94,28 @@ export default function AnswerViewer({ pages, segments, mappings, questions, sel
             )}
           </div>
 
+          {/* Page nav */}
           {pages.length > 1 && (
-            <div className="flex items-center gap-1.5 text-xs text-ink-muted">
+            <div className="flex items-center gap-1 text-[11px] text-gray-500">
               <button
                 onClick={() => setPageIndex((i) => Math.max(0, i - 1))}
                 disabled={pageIndex === 0}
-                className="focus-ring flex h-6 w-6 items-center justify-center rounded-md hover:bg-gray-100 disabled:opacity-30"
+                className="flex h-6 w-6 items-center justify-center rounded-md hover:bg-gray-100 disabled:opacity-30 transition-colors"
               >
-                <svg viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5">
-                  <path d="M12.5 4.5 6 10l6.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3">
+                  <path d="M10 3 5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <span>
+              <span className="font-medium">
                 Page {pageIndex + 1} of {pages.length}
               </span>
               <button
                 onClick={() => setPageIndex((i) => Math.min(pages.length - 1, i + 1))}
                 disabled={pageIndex === pages.length - 1}
-                className="focus-ring flex h-6 w-6 items-center justify-center rounded-md hover:bg-gray-100 disabled:opacity-30"
+                className="flex h-6 w-6 items-center justify-center rounded-md hover:bg-gray-100 disabled:opacity-30 transition-colors"
               >
-                <svg viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5">
-                  <path d="M7.5 4.5 14 10l-6.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
             </div>
@@ -118,10 +123,11 @@ export default function AnswerViewer({ pages, segments, mappings, questions, sel
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto bg-gray-50 p-6">
+      {/* Sheet */}
+      <div className="flex-1 overflow-auto bg-[#F6F7F9] p-5">
         {currentPage && (
           <div className="mx-auto" style={{ width: `${zoom}%`, maxWidth: `${zoom}%` }}>
-            <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+            <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={currentPage.dataUrl} alt={`Answer sheet page ${currentPage.page}`} className="block w-full" draggable={false} />
               {regionsOnPage.length > 0 && (

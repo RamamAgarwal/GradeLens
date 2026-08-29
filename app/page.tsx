@@ -26,10 +26,12 @@ export default function Page() {
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [summaryOpen, setSummaryOpen] = useState(false);
+  const [userCollapsed, setUserCollapsed] = useState(false);
 
   const isProcessing = !['idle', 'done', 'error'].includes(stage);
   const canStart = questionFiles.length > 0 && answerFiles.length > 0 && !isProcessing;
   const hasResults = stage === 'done' && questions.length > 0;
+  const sidebarCollapsed = isProcessing || hasResults || userCollapsed;
 
   async function postJSON<T>(url: string, body: unknown): Promise<T> {
     const res = await fetch(url, {
@@ -105,16 +107,12 @@ export default function Page() {
     return mapping ? mapping.questionId === null : false;
   });
 
-  const [userCollapsed, setUserCollapsed] = useState(false);
-  const sidebarCollapsed = isProcessing || hasResults || userCollapsed;
-
   return (
     <div className="flex h-screen bg-[#F6F7F9]">
       <Sidebar collapsed={sidebarCollapsed} onToggle={() => setUserCollapsed((prev) => !prev)} />
+
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         <TopBar breadcrumb="Exams" onBack={hasResults || isProcessing ? handleReset : undefined} />
-
-
 
         {stage === 'idle' || stage === 'error' ? (
           <UploadStage
@@ -129,8 +127,9 @@ export default function Page() {
         ) : isProcessing ? (
           <LoadingStage stage={stage} />
         ) : (
-          <div className="grid flex-1 grid-cols-1 overflow-hidden md:grid-cols-[minmax(300px,380px)_1fr]">
-            <div className="border-b border-gray-200 md:border-b-0 md:border-r">
+          /* Results: question list + answer viewer in a rounded card */
+          <div className="flex flex-1 overflow-hidden p-3 gap-3">
+            <div className="w-[360px] shrink-0 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xs">
               <QuestionList
                 questions={questions}
                 mappings={mappings}
@@ -141,7 +140,9 @@ export default function Page() {
                 onShowSummary={() => setSummaryOpen(true)}
               />
             </div>
-            <AnswerViewer pages={answerPages} segments={segments} mappings={mappings} questions={questions} selectedId={selectedId} />
+            <div className="flex-1 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xs">
+              <AnswerViewer pages={answerPages} segments={segments} mappings={mappings} questions={questions} selectedId={selectedId} />
+            </div>
           </div>
         )}
       </div>

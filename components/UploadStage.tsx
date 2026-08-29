@@ -15,61 +15,64 @@ interface UploadStageProps {
 
 function TeacherAvatar() {
   return (
-    <div className="relative mx-auto flex h-28 w-28 items-center justify-center">
-      {/* Soft background glow halo */}
-      <span className="absolute inset-0 rounded-full bg-[#FFEFE9] shadow-inner" />
-      {/* Outer dashed ring */}
-      <span className="absolute inset-1.5 rounded-full border-2 border-dashed border-[#FF5B29]/30" />
-      {/* Inner glowing circle */}
-      <span className="absolute inset-3 rounded-full bg-gradient-to-b from-[#FFF5F2] to-[#FFEFE9] ring-2 ring-[#FF5B29]/20" />
+    <div className="relative mx-auto flex h-[120px] w-[120px] items-center justify-center">
+      {/* Outer halo */}
+      <span className="absolute inset-0 rounded-full bg-[#FFEFE9]" />
+      {/* Dashed ring */}
+      <span className="absolute inset-[6px] rounded-full border-[1.5px] border-dashed border-[#FF5B29]/25" />
 
-      {/* Orbital nodes */}
-      <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2.5 w-2.5 rounded-full bg-[#FF5B29] ring-2 ring-white shadow-xs" />
-      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-2.5 w-2.5 rounded-full bg-[#FF5B29] ring-2 ring-white shadow-xs" />
-      <span className="absolute -left-1 top-1/2 -translate-y-1/2 h-2.5 w-2.5 rounded-full bg-[#FF5B29] ring-2 ring-white shadow-xs" />
-      <span className="absolute -right-1 top-1/2 -translate-y-1/2 h-2.5 w-2.5 rounded-full bg-[#FF5B29] ring-2 ring-white shadow-xs" />
+      {/* Orbital dots */}
+      <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 h-[7px] w-[7px] rounded-full bg-[#FF5B29]" />
+      <span className="absolute -bottom-[3px] left-1/2 -translate-x-1/2 h-[7px] w-[7px] rounded-full bg-[#FF5B29]" />
+      <span className="absolute -left-[3px] top-1/2 -translate-y-1/2 h-[7px] w-[7px] rounded-full bg-[#FF5B29]" />
+      <span className="absolute -right-[3px] top-1/2 -translate-y-1/2 h-[7px] w-[7px] rounded-full bg-[#FF5B29]" />
 
-      {/* 3D Teacher Avatar SVG Graphic */}
-      <div className="relative h-20 w-20 overflow-hidden rounded-full flex items-center justify-center">
+      {/* Avatar circle */}
+      <div className="relative h-[88px] w-[88px] overflow-hidden rounded-full bg-gradient-to-b from-[#FFF5F2] to-[#FFE8E0] ring-[2.5px] ring-white shadow-sm">
         <svg viewBox="0 0 100 100" fill="none" className="h-full w-full">
-          {/* Background circle inside avatar */}
-          <circle cx="50" cy="50" r="48" fill="#FEE4E2" />
-          
-          {/* Teacher Hair Back */}
-          <path d="M28 45c0-18 10-28 22-28s22 10 22 28c0 5-2 15-4 18H32c-2-3-4-13-4-18z" fill="#292524" />
+          {/* Background */}
+          <circle cx="50" cy="50" r="50" fill="#FECACA" fillOpacity="0.3" />
 
-          {/* Teacher Body / Suit */}
-          <path d="M22 88c0-14 12-24 28-24s28 10 28 24v12H22V88z" fill="#18181B" />
-          {/* Inner Shirt / Collar */}
-          <path d="M42 64l8 12 8-12H42z" fill="#FFFFFF" />
-          <path d="M46 72l4 6 4-6h-8z" fill="#FF5B29" />
+          {/* Hair back / volume */}
+          <path d="M25 42c0-18 11-28 25-28s25 10 25 28c0 6-2 14-3 17H28c-1-3-3-11-3-17z" fill="#292524" />
 
-          {/* Head & Neck */}
-          <rect x="44" y="52" width="12" height="14" rx="4" fill="#FDBA74" />
-          <ellipse cx="50" cy="42" rx="16" ry="18" fill="#FED7AA" />
+          {/* Body - dark suit */}
+          <path d="M20 90c0-15 13-25 30-25s30 10 30 25v10H20V90z" fill="#1A1A1A" />
+          {/* White collar */}
+          <path d="M40 65l10 13 10-13H40z" fill="white" />
+          {/* Orange tie detail */}
+          <path d="M46 74l4 6 4-6h-8z" fill="#FF5B29" />
 
-          {/* Hair Front / Bangs */}
-          <path d="M34 36c3-10 10-14 16-14s13 4 16 14c-4-4-10-6-16-6s-12 2-16 6z" fill="#292524" />
-          <path d="M34 32c4 0 9 6 9 10 0-6-4-12-9-10z" fill="#1C1917" />
-          <path d="M66 32c-4 0-9 6-9 10 0-6 4-12 9-10z" fill="#1C1917" />
+          {/* Neck */}
+          <rect x="44" y="53" width="12" height="14" rx="4" fill="#FDBA74" />
+          {/* Face */}
+          <ellipse cx="50" cy="42" rx="17" ry="19" fill="#FED7AA" />
+
+          {/* Hair bangs */}
+          <path d="M33 35c3-11 10-15 17-15s14 4 17 15c-4-4-10-7-17-7s-13 3-17 7z" fill="#292524" />
+          <path d="M33 31c3 0 8 5 8 9-1-5-4-11-8-9z" fill="#1C1917" />
+          <path d="M67 31c-3 0-8 5-8 9 1-5 4-11 8-9z" fill="#1C1917" />
 
           {/* Glasses */}
-          <rect x="37" y="38" width="11" height="8" rx="3" fill="none" stroke="#18181B" strokeWidth="2.5" />
-          <rect x="52" y="38" width="11" height="8" rx="3" fill="none" stroke="#18181B" strokeWidth="2.5" />
-          <line x1="48" y1="42" x2="52" y2="42" stroke="#18181B" strokeWidth="2.5" />
+          <rect x="36" y="38" width="12" height="8" rx="3" fill="none" stroke="#1A1A1A" strokeWidth="2.2" />
+          <rect x="52" y="38" width="12" height="8" rx="3" fill="none" stroke="#1A1A1A" strokeWidth="2.2" />
+          <line x1="48" y1="42" x2="52" y2="42" stroke="#1A1A1A" strokeWidth="2.2" />
 
-          {/* Eyes behind glasses */}
-          <circle cx="42.5" cy="42" r="2" fill="#18181B" />
-          <circle cx="57.5" cy="42" r="2" fill="#18181B" />
+          {/* Eyes */}
+          <circle cx="42" cy="42" r="2.2" fill="#1A1A1A" />
+          <circle cx="58" cy="42" r="2.2" fill="#1A1A1A" />
+          {/* Eye highlights */}
+          <circle cx="41" cy="41" r="0.8" fill="white" />
+          <circle cx="57" cy="41" r="0.8" fill="white" />
 
           {/* Smile */}
-          <path d="M45 49c2 2 8 2 10 0" stroke="#C2410C" strokeWidth="2" strokeLinecap="round" />
+          <path d="M44 49c2 2.5 10 2.5 12 0" stroke="#C2410C" strokeWidth="1.8" strokeLinecap="round" fill="none" />
 
-          {/* Teacher holding notebook/folder */}
-          <rect x="36" y="68" width="28" height="22" rx="3" transform="rotate(-6 50 79)" fill="#FF5B29" />
-          <rect x="38" y="70" width="24" height="18" rx="2" transform="rotate(-6 50 79)" fill="#FFFFFF" opacity="0.9" />
-          <line x1="42" y1="76" x2="56" y2="74.5" stroke="#FF5B29" strokeWidth="2" strokeLinecap="round" />
-          <line x1="42" y1="81" x2="54" y2="79.5" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round" />
+          {/* Book/notebook in hand */}
+          <rect x="60" y="68" width="18" height="24" rx="2.5" fill="#FF5B29" transform="rotate(8 69 80)" />
+          <rect x="62" y="70" width="14" height="20" rx="1.5" fill="white" fillOpacity="0.9" transform="rotate(8 69 80)" />
+          <line x1="65" y1="77" x2="73" y2="76" stroke="#FF5B29" strokeWidth="1.5" strokeLinecap="round" transform="rotate(8 69 80)" />
+          <line x1="65" y1="81" x2="72" y2="80" stroke="#D4D4D4" strokeWidth="1.5" strokeLinecap="round" transform="rotate(8 69 80)" />
         </svg>
       </div>
     </div>
@@ -86,49 +89,49 @@ export default function UploadStage({
   error
 }: UploadStageProps) {
   return (
-    <div className="flex flex-1 items-center justify-center px-6 py-12 bg-[#F6F7F9]">
-      <div className="w-full max-w-2xl text-center">
-        {/* Main Heading */}
-        <h1 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight leading-snug">
+    <div className="flex flex-1 items-center justify-center px-6 py-10 overflow-auto">
+      <div className="w-full max-w-[580px] text-center">
+        {/* Heading */}
+        <h1 className="text-[26px] font-extrabold text-[#1A1A1A] tracking-tight leading-tight">
           Upload{' '}
-          <span className="inline-block rounded-xl bg-[#FFEFE9] px-3 py-1 text-[#FF5B29] font-black shadow-2xs">
+          <span className="inline rounded-lg bg-[#FFEFE9] px-2.5 py-0.5 text-[#FF5B29]">
             Question Paper &amp; Answer Sheets
           </span>
         </h1>
-        <p className="mt-2.5 text-sm font-semibold text-gray-400">Upload both files to get started</p>
+        <p className="mt-2 text-[13px] text-gray-400">Upload both files to get started</p>
 
-        {/* 3D Teacher Avatar graphic */}
-        <div className="mt-7">
+        {/* Avatar */}
+        <div className="mt-6">
           <TeacherAvatar />
         </div>
 
-        {/* Two Upload Cards */}
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        {/* Upload cards */}
+        <div className="mt-7 grid gap-4 sm:grid-cols-2">
           <Uploader label="Question Paper" files={questionFiles} onChange={onQuestionFilesChange} />
           <Uploader label="Answer Sheet" files={answerFiles} onChange={onAnswerFilesChange} />
         </div>
 
-        {/* Bottom Action Area */}
-        <div className="mt-8 flex flex-col items-center gap-3">
+        {/* Action */}
+        <div className="mt-7 flex flex-col items-center gap-2.5">
           <button
             onClick={onStart}
             disabled={!canStart}
-            className={`flex items-center gap-2 rounded-full px-7 py-3 text-xs font-bold tracking-wide transition-all ${
+            className={`flex items-center gap-2 rounded-full px-6 py-2.5 text-[12px] font-semibold transition-all ${
               canStart
-                ? 'bg-[#18181B] text-white hover:bg-black shadow-md cursor-pointer active:scale-98'
-                : 'bg-[#E2E4E8] text-[#9EA3B0] cursor-not-allowed'
+                ? 'bg-[#1A1A1A] text-white hover:bg-black shadow-sm'
+                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
           >
             Start Mapping
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-3.5 w-3.5" />
           </button>
 
-          <p className="text-[11.5px] font-semibold text-gray-400">
+          <p className="text-[11px] text-gray-400">
             Once both files are uploaded, you&rsquo;ll be able to map answers with questions
           </p>
 
           {error && (
-            <p className="mt-2 rounded-xl bg-red-50 border border-red-200 px-4 py-2.5 text-xs font-semibold text-red-600 shadow-2xs">
+            <p className="mt-1 rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-[12px] text-red-600">
               {error}
             </p>
           )}
@@ -137,4 +140,3 @@ export default function UploadStage({
     </div>
   );
 }
-

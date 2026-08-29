@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 html,
 body {
-  background-color: #EDEDED;
+  background-color: #F6F7F9;
 }
 
 * {
@@ -49,10 +49,57 @@ body {
   }
 }
 
+/* Loading sparkle animations */
 @keyframes sparkle-pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.12); opacity: 0.85; }
+  50% { transform: scale(1.15); opacity: 0.8; }
 }
+
+@keyframes sparkle-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sparkle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes sparkle-fade-scale {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.3); }
+}
+
 .sparkle-anim {
-  animation: sparkle-pulse 1.4s ease-in-out infinite;
+  animation: sparkle-pulse 1.8s ease-in-out infinite;
+}
+
+.sparkle-float {
+  animation: sparkle-float 2.4s ease-in-out infinite;
+}
+
+.sparkle-orbit-1 {
+  animation: sparkle-fade-scale 2.8s ease-in-out infinite;
+}
+
+.sparkle-orbit-2 {
+  animation: sparkle-fade-scale 2.8s ease-in-out infinite 0.6s;
+}
+
+.sparkle-orbit-3 {
+  animation: sparkle-fade-scale 2.8s ease-in-out infinite 1.2s;
+}
+
+/* Sidebar transitions */
+aside {
+  transition: width 200ms ease;
+}
+
+/* Smooth card hover */
+.upload-card {
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+.upload-card:hover {
+  transform: translateY(-1px);
 }
